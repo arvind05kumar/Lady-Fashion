@@ -130,26 +130,32 @@ export default function Home() {
                 {[1, 2, 3, 4].map(n => <div key={n} className="aspect-square bg-gray-100 animate-pulse rounded-sm"></div>)}
               </div>
             ) : (
-              <div className="w-full pb-12 relative px-4 md:px-12 category-swiper-container">
+              <div className="w-full pb-12 relative category-swiper-container">
                 <Swiper
                   effect={'coverflow'}
                   grabCursor={true}
                   centeredSlides={true}
-                  slidesPerView={'auto'}
+                  slidesPerView={1.4}
                   initialSlide={Math.max(0, Math.floor((categories.slice(0, 8).length - 1) / 2))}
+                  breakpoints={{
+                    480:  { slidesPerView: 2.2 },
+                    768:  { slidesPerView: 3.2 },
+                    1024: { slidesPerView: 4.5 },
+                    1280: { slidesPerView: 5   },
+                  }}
                   coverflowEffect={{
                     rotate: 0,
-                    stretch: 0,
-                    depth: 100,
-                    modifier: 2.5,
-                    slideShadows: true,
+                    stretch: 20,
+                    depth: 80,
+                    modifier: 1.5,
+                    slideShadows: false,
                   }}
                   navigation={true}
                   modules={[EffectCoverflow, Navigation]}
-                  className="w-full py-10 !overflow-visible"
+                  className="w-full py-10"
                 >
                   {categories.slice(0, 8).map(cat => (
-                    <SwiperSlide key={cat.id} className="w-[220px] md:w-[260px] transition-all duration-300">
+                    <SwiperSlide key={cat.id} className="transition-all duration-300">
                       <CategoryCard category={cat} />
                     </SwiperSlide>
                   ))}
