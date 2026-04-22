@@ -32,7 +32,13 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
   
   let product;
   try {
-    product = await getProductById(id);
+    const rawProduct = await getProductById(id);
+    // Serialize Firestore Timestamps to strings to avoid Next.js hydration/serialization errors
+    product = {
+      ...rawProduct,
+      createdAt: rawProduct.createdAt ? new Date((rawProduct.createdAt as any).toMillis?.() || rawProduct.createdAt).toISOString() : new Date().toISOString(),
+      updatedAt: rawProduct.updatedAt ? new Date((rawProduct.updatedAt as any).toMillis?.() || rawProduct.updatedAt).toISOString() : new Date().toISOString(),
+    } as unknown as Product;
   } catch (e) {
     notFound();
   }
@@ -43,10 +49,21 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
   let relatedProducts: Product[] = [];
   try {
     const catProducts = await getProductsByCategory(product.categoryId);
-    relatedProducts = catProducts.filter(p => p.id !== id).slice(0, 4);
-    if (relatedProducts.length === 0) {
+    const rawRelated = catProducts.filter(p => p.id !== id).slice(0, 4);
+    
+    if (rawRelated.length === 0) {
       const featured = await getFeaturedProducts();
-      relatedProducts = featured.filter(p => p.id !== id).slice(0, 4);
+      relatedProducts = featured.filter(p => p.id !== id).slice(0, 4).map(p => ({
+        ...p,
+        createdAt: p.createdAt ? new Date((p.createdAt as any).toMillis?.() || p.createdAt).toISOString() : new Date().toISOString(),
+        updatedAt: p.updatedAt ? new Date((p.updatedAt as any).toMillis?.() || p.updatedAt).toISOString() : new Date().toISOString(),
+      })) as unknown as Product[];
+    } else {
+      relatedProducts = rawRelated.map(p => ({
+        ...p,
+        createdAt: p.createdAt ? new Date((p.createdAt as any).toMillis?.() || p.createdAt).toISOString() : new Date().toISOString(),
+        updatedAt: p.updatedAt ? new Date((p.updatedAt as any).toMillis?.() || p.updatedAt).toISOString() : new Date().toISOString(),
+      })) as unknown as Product[];
     }
   } catch (e) {}
 
@@ -117,6 +134,11 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
               </div>
             </div>
 
+            {/* Share and Wishlist */}
+            <div className="mt-2">
+              <WhatsAppButton number={number} product={product} mode="actions" />
+            </div>
+
             {/* Description */}
             <div className="prose prose-sm text-gray-600 mb-8 max-w-none">
               <p className="leading-relaxed">{product.description}</p>
@@ -168,7 +190,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
 
             {/* Actions */}
             <div className="hidden lg:block">
-              <WhatsAppButton number={number} product={product} />
+              <WhatsAppButton number={number} product={product} mode="order" />
             </div>
           </div>
         </div>
@@ -191,13 +213,13 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
       <Footer />
 
       {/* Sticky Mobile Bottom Bar */}
-      <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t p-4 z-40 shadow-[0_-10px_30px_rgba(0,0,0,0.1)] flex items-center justify-between gap-4">
-        <div className="flex-1 shrink-0">
-          <div className="text-xs text-gray-500 uppercase">Total Price</div>
-          <div className="font-bold text-lg text-brand-primary">₹{product.price.toLocaleString('en-IN')}</div>
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t p-4 pb-6 z-40 shadow-[0_-10px_30px_rgba(0,0,0,0.1)] flex flex-col items-center gap-3">
+        <div className="flex items-center justify-center gap-2 text-sm w-full">
+          <span className="text-gray-500 uppercase tracking-wider text-xs">Total Price:</span>
+          <span className="font-bold text-xl text-brand-primary">₹{product.price.toLocaleString('en-IN')}</span>
         </div>
-        <div className="w-[60%] flex-shrink-0 max-w-[250px]">
-          <WhatsAppButton number={number} product={product} />
+        <div className="w-full">
+          <WhatsAppButton number={number} product={product} mode="order" />
         </div>
       </div>
     </div>

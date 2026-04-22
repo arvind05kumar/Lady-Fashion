@@ -37,7 +37,7 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${playfair.variable} h-full antialiased`}
     >
-      <body className="font-sans min-h-screen flex flex-col">
+      <body className="font-sans min-h-screen flex flex-col" suppressHydrationWarning>
         {children}
         <WhatsAppButton number={process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || ""} />
       </body>

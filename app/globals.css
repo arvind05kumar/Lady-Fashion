@@ -146,3 +146,31 @@
     @apply font-sans;
   }
 }
+
+/* Custom Swiper Styles for Categories */
+.category-swiper-container .swiper-button-next,
+.category-swiper-container .swiper-button-prev {
+  background-color: var(--color-brand-cream);
+  color: var(--color-brand-dark);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+.category-swiper-container .swiper-button-next:after,
+.category-swiper-container .swiper-button-prev:after {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.category-swiper-container .swiper-slide {
+  filter: blur(2px);
+  opacity: 0.6;
+  transition: all 0.3s ease;
+}
+
+.category-swiper-container .swiper-slide-active {
+  filter: blur(0);
+  opacity: 1;
+}

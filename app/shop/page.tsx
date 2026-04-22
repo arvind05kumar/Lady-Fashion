@@ -155,7 +155,8 @@ function ShopContent() {
     if (sortBy === "name_asc") return a.name.localeCompare(b.name);
     if (sortBy === "featured") return (a.isFeatured === b.isFeatured) ? 0 : a.isFeatured ? -1 : 1;
     // newest default
-    return b.createdAt.getTime() - a.createdAt.getTime();
+    const getTime = (d: any) => d ? (typeof d.toMillis === 'function' ? d.toMillis() : new Date(d).getTime()) : 0;
+    return getTime(b.createdAt) - getTime(a.createdAt);
   });
 
   const activeFiltersCount = selectedCats.length + selectedFabrics.length + selectedOccasions.length + selectedColors.length + (onlyAvailable ? 1 : 0) + (maxPrice < 50000 ? 1 : 0);

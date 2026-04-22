@@ -6,7 +6,7 @@ import { Product } from "@/lib/types";
 import { Button } from "@/components/ui/button";
 import toast from "react-hot-toast";
 
-export default function WhatsAppButton({ number, product }: { number: string; product?: Product }) {
+export default function WhatsAppButton({ number, product, mode = "full" }: { number: string; product?: Product; mode?: "full" | "order" | "actions" }) {
   const [isHovered, setIsHovered] = useState(false);
   const [isWishlisted, setIsWishlisted] = useState(false);
 
@@ -102,33 +102,45 @@ Please confirm availability and share payment details. Thank you! 🙏`.trim();
     window.open(whatsappUrl, '_blank');
   };
 
-  return (
-    <div className="space-y-4">
+  const ActionsLayout = () => (
+    <div className="grid grid-cols-2 gap-4 mb-6">
+      <Button onClick={handleShare} variant="outline" className="w-full py-6 text-gray-700 bg-gray-50 border-gray-200 hover:bg-gray-100 flex items-center justify-center gap-2">
+        <Share className="w-4 h-4" />
+        Share
+      </Button>
+      <Button onClick={toggleWishlist} variant="outline" className={`w-full py-6 flex items-center justify-center gap-2 border-gray-200 ${isWishlisted ? "bg-red-50 text-red-600 border-red-100 hover:bg-red-100" : "text-gray-700 bg-gray-50 hover:bg-gray-100"}`}>
+        <Heart className={`w-4 h-4 ${isWishlisted ? "fill-current" : ""}`} />
+        {isWishlisted ? "Saved" : "Save to Wishlist"}
+      </Button>
+    </div>
+  );
+
+  const OrderLayout = () => (
+    <div className="w-full">
       {product.isAvailable ? (
-        <Button onClick={handleOrder} className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white py-8 text-lg font-bold flex flex-col items-center justify-center rounded-sm group relative overflow-hidden">
+        <Button onClick={handleOrder} className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white py-6 md:py-8 text-base md:text-lg font-bold flex flex-col items-center justify-center rounded-sm group relative overflow-hidden h-auto">
           <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
           <div className="flex items-center gap-2 relative z-10">
-            <MessageCircle className="w-6 h-6" />
-            <span> Order Now on WhatsApp</span>
+            <MessageCircle className="w-5 h-5 md:w-6 md:h-6" />
+            <span>Order on WhatsApp</span>
           </div>
-          <span className="text-xs font-normal opacity-90 mt-1 relative z-10">Get instant response • Easy ordering • 100% Secure</span>
+          <span className="hidden md:block text-xs font-normal opacity-90 mt-1 relative z-10">Get instant response • Easy ordering • 100% Secure</span>
         </Button>
       ) : (
-        <Button onClick={handleOrder} variant="outline" className="w-full border-red-200 text-red-600 bg-red-50 hover:bg-red-100 py-6 text-base font-bold flex gap-2">
-          Contact us for availability
+        <Button onClick={handleOrder} variant="outline" className="w-full border-red-200 text-red-600 bg-red-50 hover:bg-red-100 py-6 text-sm md:text-base font-bold flex gap-2">
+          Contact for availability
         </Button>
       )}
+    </div>
+  );
 
-      <div className="grid grid-cols-2 gap-4">
-        <Button onClick={handleShare} variant="outline" className="w-full py-6 text-gray-700 bg-gray-50 border-gray-200 hover:bg-gray-100 flex items-center justify-center gap-2">
-          <Share className="w-4 h-4" />
-          Share
-        </Button>
-        <Button onClick={toggleWishlist} variant="outline" className={`w-full py-6 flex items-center justify-center gap-2 border-gray-200 ${isWishlisted ? "bg-red-50 text-red-600 border-red-100 hover:bg-red-100" : "text-gray-700 bg-gray-50 hover:bg-gray-100"}`}>
-          <Heart className={`w-4 h-4 ${isWishlisted ? "fill-current" : ""}`} />
-          {isWishlisted ? "Saved" : "Save to Wishlist"}
-        </Button>
-      </div>
+  if (mode === "actions") return <ActionsLayout />;
+  if (mode === "order") return <OrderLayout />;
+
+  return (
+    <div className="space-y-4">
+      <OrderLayout />
+      <ActionsLayout />
     </div>
   );
 }

@@ -11,6 +11,12 @@ import { getAllCategories, getFeaturedProducts, getNewArrivals } from "@/lib/fir
 import { Category, Product } from "@/lib/types";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { EffectCoverflow, Navigation } from 'swiper/modules';
+
+import 'swiper/css';
+import 'swiper/css/effect-coverflow';
+import 'swiper/css/navigation';
 
 export default function Home() {
   const [categories, setCategories] = useState<Category[]>([]);
@@ -124,14 +130,30 @@ export default function Home() {
                 {[1, 2, 3, 4].map(n => <div key={n} className="aspect-square bg-gray-100 animate-pulse rounded-sm"></div>)}
               </div>
             ) : (
-              <div className="flex overflow-x-auto pb-6 -mx-4 px-4 md:overflow-visible md:pb-0 md:mx-0 md:px-0 scrollbar-hide">
-                <div className="flex flex-nowrap md:grid md:grid-cols-4 gap-4 md:gap-6 min-w-max md:min-w-0">
+              <div className="w-full pb-12 relative px-4 md:px-12 category-swiper-container">
+                <Swiper
+                  effect={'coverflow'}
+                  grabCursor={true}
+                  centeredSlides={true}
+                  slidesPerView={'auto'}
+                  initialSlide={Math.max(0, Math.floor((categories.slice(0, 8).length - 1) / 2))}
+                  coverflowEffect={{
+                    rotate: 0,
+                    stretch: 0,
+                    depth: 100,
+                    modifier: 2.5,
+                    slideShadows: true,
+                  }}
+                  navigation={true}
+                  modules={[EffectCoverflow, Navigation]}
+                  className="w-full py-10 !overflow-visible"
+                >
                   {categories.slice(0, 8).map(cat => (
-                    <div key={cat.id} className="w-64 md:w-auto">
+                    <SwiperSlide key={cat.id} className="w-[220px] md:w-[260px] transition-all duration-300">
                       <CategoryCard category={cat} />
-                    </div>
+                    </SwiperSlide>
                   ))}
-                </div>
+                </Swiper>
               </div>
             )}
           </div>
@@ -198,7 +220,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* NEW ARRIVALS */}
+        {/* NEW ARRIVALS (Temporarily Disabled)
         <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-end mb-10 border-b border-gray-200 pb-4">
@@ -223,6 +245,7 @@ export default function Home() {
             )}
           </div>
         </section>
+        */}
 
         {/* WHY CHOOSE US */}
         <section className="bg-brand-cream py-20">

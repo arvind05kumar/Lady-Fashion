@@ -21,21 +21,36 @@ export async function getProductById(id: string): Promise<Product> {
 }
 
 export async function getProductsByCategory(categoryId: string): Promise<Product[]> {
-  const q = query(productsCollection, where("categoryId", "==", categoryId), orderBy("createdAt", "desc"));
+  const q = query(productsCollection, where("categoryId", "==", categoryId));
   const snapshot = await getDocs(q);
-  return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Product));
+  const products = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Product));
+  return products.sort((a, b) => {
+    const aTime = typeof (a as any).createdAt?.toMillis === 'function' ? (a as any).createdAt.toMillis() : new Date(a.createdAt).getTime();
+    const bTime = typeof (b as any).createdAt?.toMillis === 'function' ? (b as any).createdAt.toMillis() : new Date(b.createdAt).getTime();
+    return (bTime || 0) - (aTime || 0);
+  });
 }
 
 export async function getFeaturedProducts(): Promise<Product[]> {
-  const q = query(productsCollection, where("isFeatured", "==", true), orderBy("createdAt", "desc"));
+  const q = query(productsCollection, where("isFeatured", "==", true));
   const snapshot = await getDocs(q);
-  return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Product));
+  const products = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Product));
+  return products.sort((a, b) => {
+    const aTime = typeof (a as any).createdAt?.toMillis === 'function' ? (a as any).createdAt.toMillis() : new Date(a.createdAt).getTime();
+    const bTime = typeof (b as any).createdAt?.toMillis === 'function' ? (b as any).createdAt.toMillis() : new Date(b.createdAt).getTime();
+    return (bTime || 0) - (aTime || 0);
+  });
 }
 
 export async function getNewArrivals(): Promise<Product[]> {
-  const q = query(productsCollection, where("isNewArrival", "==", true), orderBy("createdAt", "desc"));
+  const q = query(productsCollection, where("isNewArrival", "==", true));
   const snapshot = await getDocs(q);
-  return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Product));
+  const products = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Product));
+  return products.sort((a, b) => {
+    const aTime = typeof (a as any).createdAt?.toMillis === 'function' ? (a as any).createdAt.toMillis() : new Date(a.createdAt).getTime();
+    const bTime = typeof (b as any).createdAt?.toMillis === 'function' ? (b as any).createdAt.toMillis() : new Date(b.createdAt).getTime();
+    return (bTime || 0) - (aTime || 0);
+  });
 }
 
 export async function addProduct(data: Omit<Product, "id" | "createdAt" | "updatedAt">): Promise<string> {

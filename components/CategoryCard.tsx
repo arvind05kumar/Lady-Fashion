@@ -6,7 +6,7 @@ export default function CategoryCard({ category }: { category: Category }) {
   return (
     <Link 
       href={`/shop?category=${category.slug}`} 
-      className="group block relative w-full aspect-square overflow-hidden bg-gray-100 border border-transparent hover:border-brand-gold transition-colors duration-300"
+      className="group block relative w-full aspect-[4/5] rounded-xl overflow-hidden bg-gray-100 border border-transparent hover:border-brand-gold transition-colors duration-300 shadow-xl"
     >
       <Image 
         src={category.imageUrl || "https://picsum.photos/seed/placeholder/600/600"} 
