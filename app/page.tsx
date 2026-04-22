@@ -44,49 +44,41 @@ export default function Home() {
       <main className="flex-grow pt-[104px] lg:pt-[116px]">
         
         {/* HERO SECTION */}
-        <section className="relative w-full min-h-[calc(100vh-104px)] flex items-center bg-brand-dark overflow-hidden">
-          {/* Subtle CSS background pattern overlay */}
-          <div className="absolute inset-0 opacity-20 pointer-events-none" style={{ backgroundImage: 'radial-gradient(var(--color-brand-gold) 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
-          <div className="absolute inset-0 bg-gradient-to-br from-brand-primary/90 to-brand-dark/95 z-0"></div>
+        <section className="relative w-full min-h-[calc(100vh-104px)] flex items-center overflow-hidden">
+          {/* Background Image */}
+          <div className="absolute inset-0 z-0">
+            <Image src="/hero-banner.jpg" alt="Saree Collection Banner" fill priority className="object-cover object-center" sizes="100vw" />
+            {/* Gradient Overlay to make text readable */}
+            <div className="absolute inset-0 bg-gradient-to-r from-brand-dark/90 via-brand-dark/60 to-transparent"></div>
+          </div>
 
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 py-12 lg:py-0">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="max-w-2xl text-left space-y-6 lg:space-y-8">
+              <div className="inline-block px-4 py-1.5 border border-brand-gold/50 rounded-full bg-brand-dark/40 backdrop-blur-sm shadow-sm text-brand-gold text-xs font-bold tracking-widest uppercase">
+                ✨ New Collection 2024
+              </div>
               
-              <div className="text-left space-y-6 lg:space-y-8">
-                <div className="inline-block px-4 py-1.5 border border-brand-gold/50 rounded-full bg-brand-gold/10 backdrop-blur-sm shadow-sm text-brand-gold text-xs font-bold tracking-widest uppercase">
-                  ✨ New Collection 2024
-                </div>
-                
-                <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">
-                  Elegance Woven <br className="hidden md:block"/>
-                  in Every <span className="text-brand-gold relative inline-block">Thread<span className="absolute bottom-2 left-0 w-full h-2 bg-brand-gold/30 -z-10"></span></span>
-                </h1>
-                
-                <p className="text-lg md:text-xl text-gray-200 max-w-lg font-light leading-relaxed">
-                  Discover handpicked sarees for every occasion — from timeless silks to festive weaves.
-                </p>
-                
-                <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                  <Link href="/shop">
-                    <Button className="w-full sm:w-auto bg-brand-gold hover:bg-brand-gold-light text-brand-dark rounded-none px-8 py-6 text-base font-semibold tracking-wide">
-                      Explore Collection
-                    </Button>
-                  </Link>
-                  <Link href="/shop?sort=new">
-                    <Button variant="outline" className="w-full sm:w-auto border-white text-white hover:bg-white hover:text-brand-dark rounded-none px-8 py-6 text-base font-semibold tracking-wide">
-                      New Arrivals
-                    </Button>
-                  </Link>
-                </div>
+              <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">
+                Elegance Woven <br className="hidden md:block"/>
+                in Every <span className="text-brand-gold relative inline-block">Thread<span className="absolute bottom-2 left-0 w-full h-2 bg-brand-gold/30 -z-10"></span></span>
+              </h1>
+              
+              <p className="text-lg md:text-xl text-gray-200 max-w-lg font-light leading-relaxed">
+                Discover handpicked sarees for every occasion — from timeless silks to festive weaves.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                <Link href="/shop">
+                  <Button className="w-full sm:w-auto bg-brand-gold hover:bg-brand-gold-light text-brand-dark rounded-none px-8 py-6 text-base font-semibold tracking-wide">
+                    Explore Collection
+                  </Button>
+                </Link>
+                <Link href="/shop?sort=new">
+                  <Button variant="outline" className="w-full sm:w-auto border-white text-white hover:bg-white hover:text-brand-dark rounded-none px-8 py-6 text-base font-semibold tracking-wide backdrop-blur-sm bg-white/10">
+                    New Arrivals
+                  </Button>
+                </Link>
               </div>
-
-              <div className="relative hidden md:flex justify-center items-center h-[500px] lg:h-[600px]">
-                <div className="w-[350px] h-[450px] rounded-xl overflow-hidden border-4 border-brand-gold/20 shadow-2xl relative">
-                  <Image src="/hero-banner.jpg" alt="Saree Collection" fill priority className="object-cover" sizes="(max-width: 768px) 100vw, 350px" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/60 to-transparent"></div>
-                </div>
-              </div>
-
             </div>
           </div>
 
