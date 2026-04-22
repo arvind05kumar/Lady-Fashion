@@ -81,11 +81,7 @@ export default function Home() {
               </div>
 
               <div className="relative hidden md:flex justify-center items-center h-[500px] lg:h-[600px]">
-                {/* Decorative Circular Elements */}
-                <div className="absolute w-[400px] h-[400px] border border-brand-gold/30 rounded-full animate-[spin_60s_linear_infinite]"></div>
-                <div className="absolute w-[450px] h-[450px] border border-dashed border-brand-gold/40 rounded-full animate-[spin_40s_linear_infinite_reverse]"></div>
-                
-                <div className="w-[350px] h-[450px] rounded-[100px] overflow-hidden border-4 border-brand-gold/20 shadow-2xl relative">
+                <div className="w-[350px] h-[450px] rounded-xl overflow-hidden border-4 border-brand-gold/20 shadow-2xl relative">
                   <Image src="/hero-banner.jpg" alt="Saree Collection" fill priority className="object-cover" sizes="(max-width: 768px) 100vw, 350px" />
                   <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/60 to-transparent"></div>
                 </div>
