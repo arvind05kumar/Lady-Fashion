@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import SplashScreen from "@/components/SplashScreen";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -38,6 +39,7 @@ export default function RootLayout({
       className={`${inter.variable} ${playfair.variable} h-full antialiased`}
     >
       <body className="font-sans min-h-screen flex flex-col" suppressHydrationWarning>
+        <SplashScreen />
         {children}
         <WhatsAppButton number={process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || ""} />
       </body>

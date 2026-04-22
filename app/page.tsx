@@ -48,7 +48,7 @@ export default function Home() {
     <>
       <Navbar />
       <main className="flex-grow pt-[104px] lg:pt-[116px]">
-        
+
         {/* HERO SECTION */}
         <section className="relative w-full min-h-[calc(100vh-104px)] flex items-center overflow-hidden">
           {/* Background Image */}
@@ -61,18 +61,18 @@ export default function Home() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 py-12 lg:py-0">
             <div className="max-w-2xl text-left space-y-6 lg:space-y-8">
               <div className="inline-block px-4 py-1.5 border border-brand-gold/50 rounded-full bg-brand-dark/40 backdrop-blur-sm shadow-sm text-brand-gold text-xs font-bold tracking-widest uppercase">
-                ✨ New Collection 2024
+                ✨ New Collection 2026
               </div>
-              
+
               <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">
-                Elegance Woven <br className="hidden md:block"/>
+                Elegance Woven <br className="hidden md:block" />
                 in Every <span className="text-brand-gold relative inline-block">Thread<span className="absolute bottom-2 left-0 w-full h-2 bg-brand-gold/30 -z-10"></span></span>
               </h1>
-              
+
               <p className="text-lg md:text-xl text-gray-200 max-w-lg font-light leading-relaxed">
                 Discover handpicked sarees for every occasion — from timeless silks to festive weaves.
               </p>
-              
+
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <Link href="/shop">
                   <Button className="w-full sm:w-auto bg-brand-gold hover:bg-brand-gold-light text-brand-dark rounded-none px-8 py-6 text-base font-semibold tracking-wide">
@@ -138,10 +138,10 @@ export default function Home() {
                   slidesPerView={1.4}
                   initialSlide={Math.max(0, Math.floor((categories.slice(0, 8).length - 1) / 2))}
                   breakpoints={{
-                    480:  { slidesPerView: 2.2 },
-                    768:  { slidesPerView: 3.2 },
+                    480: { slidesPerView: 2.2 },
+                    768: { slidesPerView: 3.2 },
                     1024: { slidesPerView: 4.5 },
-                    1280: { slidesPerView: 5   },
+                    1280: { slidesPerView: 5 },
                   }}
                   coverflowEffect={{
                     rotate: 0,
@@ -172,7 +172,7 @@ export default function Home() {
           {/* @ts-ignore */}
           <marquee behavior="scroll" direction="left" scrollamount="6" className="text-brand-gold font-medium text-sm md:text-base tracking-widest uppercase">
             ✦ Handwoven Elegance &nbsp;&nbsp;&nbsp; ✦ Pure Silk Sarees &nbsp;&nbsp;&nbsp; ✦ Banarasi Collection &nbsp;&nbsp;&nbsp; ✦ Festive Specials &nbsp;&nbsp;&nbsp; ✦ Designer Weaves &nbsp;&nbsp;&nbsp; ✦ Premium Quality &nbsp;&nbsp;&nbsp; ✦ Trusted by 1000+ Customers &nbsp;&nbsp;&nbsp; ✦ Free Shipping on ₹999+ &nbsp;&nbsp;&nbsp; ✦ Handwoven Elegance &nbsp;&nbsp;&nbsp; ✦ Pure Silk Sarees &nbsp;&nbsp;&nbsp; ✦ Banarasi Collection &nbsp;&nbsp;&nbsp; ✦ Festive Specials &nbsp;&nbsp;&nbsp; ✦ Designer Weaves &nbsp;&nbsp;&nbsp; ✦ Premium Quality &nbsp;&nbsp;&nbsp;
-          {/* @ts-ignore */}
+            {/* @ts-ignore */}
           </marquee>
         </div>
 
@@ -230,7 +230,7 @@ export default function Home() {
             </div>
             <div className="w-full md:w-1/3 aspect-video bg-white/10 p-4 border border-brand-gold/30 rounded">
               <div className="w-full h-full border border-dashed border-brand-gold/50 flex flex-col items-center justify-center p-4 text-center">
-                <span className="font-serif text-xl">✨ New Collection</span><br/>
+                <span className="font-serif text-xl">✨ New Collection</span><br />
                 <span className="text-sm opacity-80">(Dynamic banners coming soon)</span>
               </div>
             </div>
