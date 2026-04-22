@@ -165,6 +165,17 @@ export default function Home() {
           </div>
         </section>
 
+        {/* MARQUEE DIVIDER */}
+        <div className="bg-brand-dark py-4 overflow-hidden relative">
+          <div className="absolute left-0 top-0 h-full w-12 bg-gradient-to-r from-brand-dark to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 h-full w-12 bg-gradient-to-l from-brand-dark to-transparent z-10 pointer-events-none" />
+          {/* @ts-ignore */}
+          <marquee behavior="scroll" direction="left" scrollamount="6" className="text-brand-gold font-medium text-sm md:text-base tracking-widest uppercase">
+            ✦ Handwoven Elegance &nbsp;&nbsp;&nbsp; ✦ Pure Silk Sarees &nbsp;&nbsp;&nbsp; ✦ Banarasi Collection &nbsp;&nbsp;&nbsp; ✦ Festive Specials &nbsp;&nbsp;&nbsp; ✦ Designer Weaves &nbsp;&nbsp;&nbsp; ✦ Premium Quality &nbsp;&nbsp;&nbsp; ✦ Trusted by 1000+ Customers &nbsp;&nbsp;&nbsp; ✦ Free Shipping on ₹999+ &nbsp;&nbsp;&nbsp; ✦ Handwoven Elegance &nbsp;&nbsp;&nbsp; ✦ Pure Silk Sarees &nbsp;&nbsp;&nbsp; ✦ Banarasi Collection &nbsp;&nbsp;&nbsp; ✦ Festive Specials &nbsp;&nbsp;&nbsp; ✦ Designer Weaves &nbsp;&nbsp;&nbsp; ✦ Premium Quality &nbsp;&nbsp;&nbsp;
+          {/* @ts-ignore */}
+          </marquee>
+        </div>
+
         {/* FEATURED PRODUCTS */}
         <section className="py-20 bg-gray-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

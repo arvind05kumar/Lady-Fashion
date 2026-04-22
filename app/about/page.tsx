@@ -14,9 +14,9 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen flex flex-col pt-[104px] lg:pt-[116px]">
       <Navbar />
-      
+
       <main className="flex-grow">
-        
+
         {/* HERO SECTION */}
         <section className="bg-[#FAF7F2] py-16 md:py-24 border-b border-brand-gold/10">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -34,17 +34,17 @@ export default function AboutPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div className="space-y-6 text-gray-600 leading-relaxed text-lg font-light">
                 <p>
-                  Rooted in family tradition, our store began with a simple vision: to celebrate and preserve the beautiful, authentic fabrics woven by talented artisans across our country. 
+                  Rooted in family tradition, our store began with a simple vision: to celebrate and preserve the beautiful, authentic fabrics woven by talented artisans across our country.
                 </p>
                 <p>
                   Every saree in our collection is carefully <span className="font-medium text-brand-dark">handpicked</span> directly from <span className="font-medium text-brand-dark">trusted weavers</span>. We bypass middlemen to ensure that the creators get their rightful reward and you get the finest quality without compromise.
                 </p>
                 <p>
-                  Whether you are looking for a majestic Banarasi silk for a wedding or a comfortable cotton weave for daily wear, our thoughtfully curated catalog represents the living heritage of Indian textiles. 
+                  Whether you are looking for a majestic Banarasi silk for a wedding or a comfortable cotton weave for daily wear, our thoughtfully curated catalog represents the living heritage of Indian textiles.
                 </p>
               </div>
               <div className="relative h-[500px] rounded overflow-hidden shadow-xl border-4 border-white">
-                <Image src="https://picsum.photos/seed/sareestory/800/1000" alt="Weaving tradition" fill className="object-cover" />
+                <Image src="/logo1.png" alt="Weaving tradition" fill className="object-cover" />
                 <div className="absolute inset-0 bg-brand-primary/10 mix-blend-multiply"></div>
               </div>
             </div>
@@ -54,7 +54,7 @@ export default function AboutPage() {
         {/* VALUES SECTION */}
         <section className="bg-brand-dark text-white py-20 md:py-28 relative overflow-hidden">
           <div className="absolute inset-0 opacity-5 bg-[url('https://www.transparenttextures.com/patterns/arabesque.png')] pointer-events-none"></div>
-          
+
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="text-center mb-16">
               <h2 className="font-serif text-3xl md:text-4xl font-bold mb-4">Our Values</h2>
@@ -94,7 +94,7 @@ export default function AboutPage() {
             </div>
             <h3 className="font-serif text-2xl font-bold text-brand-dark mb-2">Meet the Founder</h3>
             <p className="text-gray-500 mb-10">Passionate about Indian weaves and dedicated to bringing you the best.</p>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/shop">
                 <Button className="w-full sm:w-auto bg-brand-primary hover:bg-brand-primary-light text-white px-8 py-6 rounded-none text-base font-bold tracking-wide">

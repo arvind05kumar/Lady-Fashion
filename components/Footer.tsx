@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Phone, Mail, MapPin } from "lucide-react";
 
 export default function Footer() {
@@ -12,7 +13,16 @@ export default function Footer() {
 
           {/* Left Column */}
           <div className="space-y-6">
-            <h2 className="font-serif text-3xl font-bold text-brand-gold">{storeName}</h2>
+            <div className="flex items-center gap-3">
+              <Image
+                src="/logo1.png"
+                alt="The Lady Fashion"
+                width={56}
+                height={56}
+                className="object-contain h-14 w-14 rounded-full"
+              />
+              <h2 className="font-serif text-2xl font-bold text-brand-gold">The Lady Fashion</h2>
+            </div>
             <p className="text-sm leading-relaxed text-gray-400 max-w-sm">
               Discover handpicked sarees for every occasion — from timeless silks to festive weaves. Elegance woven in every thread.
             </p>

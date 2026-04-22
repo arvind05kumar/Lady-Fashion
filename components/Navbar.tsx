@@ -12,13 +12,13 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [wishlistCount, setWishlistCount] = useState(0);
-  
+
   // Search state
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [allProducts, setAllProducts] = useState<Product[]>([]);
   const [searchResults, setSearchResults] = useState<Product[]>([]);
-  
+
   const pathname = usePathname();
   const router = useRouter();
   const searchInputRef = useRef<HTMLInputElement>(null);
@@ -73,9 +73,9 @@ export default function Navbar() {
     }
     const delayDebounceFn = setTimeout(() => {
       const q = searchQuery.toLowerCase();
-      const results = allProducts.filter(p => 
-        p.name.toLowerCase().includes(q) || 
-        (p.fabric && p.fabric.toLowerCase().includes(q)) || 
+      const results = allProducts.filter(p =>
+        p.name.toLowerCase().includes(q) ||
+        (p.fabric && p.fabric.toLowerCase().includes(q)) ||
         (p.tags && p.tags.some(t => t.toLowerCase().includes(q)))
       );
       setSearchResults(results.slice(0, 5)); // max 5 results
@@ -113,10 +113,10 @@ export default function Navbar() {
       {/* Main Navbar */}
       <nav className={`transition-all duration-300 w-full relative ${isScrolled ? "bg-white/95 backdrop-blur-md shadow-sm py-3" : "bg-white/95 py-4 lg:py-5"}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center relative z-10">
-          
+
           {/* Mobile Menu Button */}
           <div className="flex items-center lg:hidden relative z-20">
-            <button 
+            <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="text-gray-800 hover:text-brand-primary transition-colors"
             >
@@ -125,17 +125,25 @@ export default function Navbar() {
           </div>
 
           {/* Logo */}
-          <Link href="/" className="flex-shrink-0 text-center lg:text-left relative z-20">
-            <h1 className="font-serif text-2xl md:text-3xl font-bold text-brand-gold">
-              {process.env.NEXT_PUBLIC_STORE_NAME || "Saree Store"}
-            </h1>
+          <Link href="/" className="flex-shrink-0 flex items-center gap-2 relative z-20">
+            <Image
+              src="/logo1.png"
+              alt="The Lady Fashion"
+              width={48}
+              height={48}
+              className="object-contain h-12 w-12 rounded-full"
+              priority
+            />
+            <span className="font-serif text-xl md:text-2xl font-bold text-brand-gold leading-tight">
+              The Lady Fashion
+            </span>
           </Link>
 
           {/* Center Navigation (Desktop) */}
           <div className="hidden lg:flex items-center justify-center space-x-8 absolute left-1/2 transform -translate-x-1/2">
             {navLinks.map((link) => (
-              <Link 
-                key={link.name} 
+              <Link
+                key={link.name}
                 href={link.href}
                 className="text-sm font-medium text-gray-800 hover:text-brand-primary transition-colors uppercase tracking-wider relative group"
               >
@@ -147,9 +155,9 @@ export default function Navbar() {
 
           {/* Right Icons */}
           <div className="flex items-center space-x-4 md:space-x-6 relative z-20">
-            <button 
+            <button
               onClick={() => setIsSearchOpen(!isSearchOpen)}
-              className="text-gray-800 hover:text-brand-primary transition-colors" 
+              className="text-gray-800 hover:text-brand-primary transition-colors"
               aria-label="Search"
             >
               {isSearchOpen ? <X className="w-5 h-5" /> : <Search className="w-5 h-5" />}
@@ -171,12 +179,12 @@ export default function Navbar() {
           <div className="max-w-3xl mx-auto p-4 md:p-6">
             <form onSubmit={handleSearchSubmit} className="relative mb-6">
               <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-              <input 
+              <input
                 ref={searchInputRef}
-                type="text" 
+                type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search for sarees, fabrics, colors..." 
+                placeholder="Search for sarees, fabrics, colors..."
                 className="w-full bg-gray-50 border border-gray-200 rounded-full py-3 pl-12 pr-4 outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary/20 transition-all font-medium text-brand-dark"
               />
             </form>
@@ -216,21 +224,24 @@ export default function Navbar() {
       </nav>
 
       {/* Mobile Menu Drawer */}
-      <div 
+      <div
         className={`fixed inset-0 bg-black/50 z-40 transition-opacity lg:hidden ${isMobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
         onClick={() => setIsMobileMenuOpen(false)}
       >
-        <div 
+        <div
           className={`absolute top-0 left-0 w-4/5 max-w-sm h-full bg-white shadow-2xl transition-transform duration-300 ease-in-out ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"}`}
           onClick={(e) => e.stopPropagation()}
         >
           <div className="p-5 flex justify-between items-center border-b pt-16">
-            <h2 className="font-serif text-2xl font-bold text-brand-gold">{process.env.NEXT_PUBLIC_STORE_NAME || "Saree Store"}</h2>
+            <div className="flex items-center gap-2">
+              <Image src="/logo.png" alt="The Lady Fashion" width={40} height={40} className="object-contain h-10 w-10 rounded-full" />
+              <h2 className="font-serif text-xl font-bold text-brand-gold">The Lady Fashion</h2>
+            </div>
           </div>
           <div className="py-6 px-5 flex flex-col space-y-6">
             {navLinks.map((link) => (
-              <Link 
-                key={link.name} 
+              <Link
+                key={link.name}
                 href={link.href}
                 className="text-lg font-medium text-gray-800 hover:text-brand-primary uppercase tracking-wider block"
               >
